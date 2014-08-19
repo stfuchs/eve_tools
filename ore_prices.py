@@ -95,12 +95,12 @@ def calc_ore_prices(system, cargo_size):
     for i in range(len(res)):
         iks_max = float(res[i].buy.max)
         iks_m3 = float(iks_max/volumes[i])*cargo_size
-        res_sorted.append( (iks_m3, iks_max, res[i].name) )
+        res_sorted.append( (iks_m3, iks_max, float(res[i].sell.min), res[i].name) )
 
     res_sorted.sort(reverse=True)
     print "Ore prices ISK/m3 in "+system
     for i in res_sorted:
-        print '%.0f, %.2f, %s' % i
+        print '%.0f, %.2f, %.2f, %s' % i
     print "\n"
 
 
@@ -133,7 +133,8 @@ volumes = [.1,.1,.1,
 
 cargo = 5000.
 
-calc_ore_prices('Dodixie',cargo)
-calc_ore_prices('Jita',cargo)
-calc_ore_prices('Amarr',cargo)
+
 calc_ore_prices('Rens',cargo)
+calc_ore_prices('Amarr',cargo)
+calc_ore_prices('Jita',cargo)
+calc_ore_prices('Dodixie',cargo)
